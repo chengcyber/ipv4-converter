@@ -1,16 +1,24 @@
 
 const inputEl = document.getElementById('input-ip')
 const btnEl = document.getElementById('btn-ip')
-const resultEl = document.getElementById('result-ip')
+
+function print(content) {
+  const resultEl = document.getElementById('result-ip')
+  if ('textContent' in resultEl) {
+    resultEl.textContent = content;
+  } else {
+      resultEl.innerText = content;
+  }
+}
 
 btnEl.addEventListener('click', function() {
   const input = inputEl.value
-  const result = convert(input)
-  resultEl.innerText = result
-  if ('textContent' in resultEl) {
-    resultEl.textContent = result;
-  } else {
-      resultEl.innerText = result;
+  print('')
+  try {
+    const result = convert(input)
+    print(result)
+  } catch(e) {
+    print(e.name + ': ' + e.message)
   }
 })
 
